@@ -17,7 +17,7 @@
     </div>
     <div
       class="map-container"
-      style="height: 80vh; width: 100%; margin: 0 auto;"
+      style="height: 60vh; width: 100%; margin: 0 auto;"
       :class="heightClass"
     >
       <l-map
