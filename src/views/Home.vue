@@ -235,6 +235,11 @@ h1 {
     }
   }
 }
+.title {
+  @media (max-width: 600px) {
+    padding: 0 15px;
+  }
+}
 .minimized-button {
   position: absolute;
   right: 10px;
