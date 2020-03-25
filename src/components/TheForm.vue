@@ -27,8 +27,6 @@
                 <p>{{dataInSelected.data.latest.confirmed}}</p>
                 <h3>Deaths:</h3>
                 <p>{{dataInSelected.data.latest.deaths}}</p>
-                <h3>Recovered:</h3>
-                <p>{{dataInSelected.data.latest.recovered}}</p>
               </b-card-text>
               <h2
                 class="mb-5 mt-5"
