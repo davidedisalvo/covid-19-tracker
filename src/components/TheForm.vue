@@ -237,6 +237,8 @@ a {
   background: white;
   padding: 10px 20px;
   border-radius: 4px;
+  position: absolute;
+  left: 100px;
   width: 200px;
   @media (max-width: 600px) {
     position: relative;
