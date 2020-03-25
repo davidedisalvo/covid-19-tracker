@@ -76,6 +76,7 @@ export default {
     return {
       zoom: 2,
       minimizing: false,
+      minZoom: 2,
       center: latLng(47.41322, -1.219482),
       url: "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
       attribution:
@@ -84,7 +85,8 @@ export default {
       currentCenter: latLng(47.41322, -1.219482),
       showParagraph: false,
       mapOptions: {
-        zoomSnap: 0.5
+        zoomSnap: 0.5,
+        minZoom: 2
       },
       showMap: false,
       coronaCases: undefined,
