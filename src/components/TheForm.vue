@@ -29,9 +29,13 @@
                 <p>{{dataInSelected.data.latest.deaths}}</p>
               </b-card-text>
               <h2
-                class="mb-5 mt-5"
+                class="mt-5"
                 style="color: white; z-index: 2; position: relative"
               >Timeline of confirmed and deaths cases in {{name}}</h2>
+              <h5
+                class="mb-5"
+                style="color: white; z-index: 2; position: relative"
+              >To intercat with this chart hover on it</h5>
               <div class="legenda" style="z-index: 2; position: absolute; left: 20%;">
                 <h4>Legend:</h4>
                 <p style="color: blue; position: relative">Confirmed</p>
