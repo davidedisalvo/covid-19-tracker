@@ -77,7 +77,8 @@ export default {
       zoom: 2,
       minimizing: false,
       center: latLng(47.41322, -1.219482),
-      url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+      url:
+        "https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png",
       attribution:
         '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
       currentZoom: 11.5,
@@ -86,7 +87,7 @@ export default {
       mapOptions: {
         zoomSnap: 0.5
       },
-      showMap: true,
+      showMap: false,
       coronaCases: undefined,
       markers: [],
       icon: beer,
@@ -168,7 +169,9 @@ export default {
         const actualCases = undefined;
 
         response.data.locations.forEach(function(item) {
-          numbOfConfirmed.push(item.latest.confirmed);
+          if (item) {
+            numbOfConfirmed.push(item.latest.confirmed);
+          }
           let el = L.latLng(
             item.coordinates.latitude,
             item.coordinates.longitude
@@ -179,11 +182,14 @@ export default {
         const minNumber = Math.min(...numbOfConfirmed);
         const width =
           300 - (250 * (minNumber - actualCases)) / (maxNumber - minNumber);
+        self.showMap = true;
       });
     axios
       .get("https://coronavirus-tracker-api.herokuapp.com/v2/latest")
       .then(function(response) {
-        self.totalCases = response.data.latest;
+        if (response) {
+          self.totalCases = response.data.latest;
+        }
       });
   },
 
