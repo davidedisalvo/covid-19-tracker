@@ -34,7 +34,7 @@
                 class="mb-5 mt-5"
                 style="color: white; z-index: 2; position: relative"
               >Timeline of confirmed and deaths cases in {{name}}</h2>
-              <div class="legenda" style="z-index: 2; position: absolute; left: 120px;">
+              <div class="legenda" style="z-index: 2; position: absolute; left: 20%;">
                 <h4>Legend:</h4>
                 <p style="color: blue; position: relative">Confirmed</p>
                 <p style="color: red; position: relative">Deaths</p>
@@ -237,8 +237,6 @@ a {
   background: white;
   padding: 10px 20px;
   border-radius: 4px;
-  position: absolute;
-  left: 100px;
   width: 200px;
   @media (max-width: 600px) {
     position: relative;
