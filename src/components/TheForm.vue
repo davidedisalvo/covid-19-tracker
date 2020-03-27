@@ -14,19 +14,22 @@
           <b-button @click.prevent="lookInSelected" variant="outline-dark">Submit</b-button>
         </b-col>
       </b-row>
+                      <b-alert variant="danger" v-if="noResponse" show>No cases reported</b-alert>
+
     </b-container>
 
     <b-container>
       <transition name="fade" mode="out-in">
         <b-row>
           <b-col lg="12">
-            <b-card v-if="dataInSelected" tag="article" class="mb-5">
+            <b-card v-if="showCard" tag="article" class="mb-5">
               <b-card-text>
                 <h2>{{name}}</h2>
                 <h3>Confirmed:</h3>
                 <p>{{dataInSelected.data.latest.confirmed}}</p>
                 <h3>Deaths:</h3>
                 <p>{{dataInSelected.data.latest.deaths}}</p>
+
               </b-card-text>
               <h2
                 class="mt-5"
@@ -67,7 +70,8 @@ export default {
       timelineDeath: undefined,
       date: [],
       value: [],
-      valueDeath: []
+      valueDeath: [],
+      noResponse: false
     };
   },
 
@@ -111,6 +115,13 @@ export default {
           }
         };
       }
+    },
+    showCard() {
+      if (this.dataInSelected && this.noResponse === false) {
+        return true
+      } else {
+        return false
+      }
     }
   },
 
@@ -119,6 +130,12 @@ export default {
       const self = this;
       this.$store.commit("minimized", true);
       const par = this.selected[0].toUpperCase();
+      self.date = []
+      self.value= [],
+      self.valueDeath= [],
+
+
+
       axios
         .get(
           "https://coronavirus-tracker-api.herokuapp.com/v2/locations?country_code=" +
@@ -126,8 +143,16 @@ export default {
         )
         .then(function(response) {
           console.log(response);
-          self.name = self.selected[1];
-          self.dataInSelected = response;
+          if (response) {
+            self.name = self.selected[1];
+            self.dataInSelected = response;
+            self.noResponse = false
+          } else {
+            return self.noResponse = true
+          }
+
+        }).catch(function(error) {
+          return self.noResponse = true
         });
       axios
         .get(
@@ -135,13 +160,18 @@ export default {
         )
         .then(function(response) {
           response.data.locations.forEach(function(el) {
-            if (el.country === self.selected[1]) {
+            if (el && el.country === self.selected[1]) {
               self.timeline = el.timelines.confirmed.timeline;
               self.timelineDeath = el.timelines.deaths.timeline;
-            }
-          });
+                                  self.noResponse = false
 
-          Object.keys(self.timeline).forEach(function(key) {
+            }
+          })
+
+          if (self.timeline) {
+
+            Object.keys(self.timeline).forEach(function(key) {
+
             var d = new Date(key);
             var day = d.getDate();
             var month = d.getMonth();
@@ -161,6 +191,7 @@ export default {
               "December"
             ];
             var date = day + " " + months[month];
+            console.log('latest', date)
             self.date.push(date);
           });
 
@@ -170,7 +201,12 @@ export default {
           Object.values(self.timelineDeath).forEach(function(key) {
             self.valueDeath.push(key);
           });
-        });
+          }
+
+          
+        }).catch(function(error) {
+          return self.noResponse = true
+        });;
     }
   }
 };
