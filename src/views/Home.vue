@@ -244,7 +244,10 @@ h1 {
   position: absolute;
   right: 10px;
   top: 10px;
-  color: white;
+  padding: 15px;
+  background: white;
+  border-radius: 5px;
+  color: black;
   z-index: 99999;
   cursor: pointer;
   font-weight: bold;
