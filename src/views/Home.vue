@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="min-height: 100vh">
     <div class="header mb-3 mt-3">
       <b-container>
         <b-row align-v="center" align-h="around">
@@ -46,7 +46,6 @@
     </div>
 
     <TheForm/>
-    <TheFooter/>
   </div>
 </template>
 
@@ -58,7 +57,6 @@ import beer from "../assets/pin.svg";
 import nations from "../assets/nations.json";
 import TheForm from "../components/TheForm";
 import Moveable from "vue-moveable";
-import TheFooter from "../components/TheFooter";
 
 export default {
   name: "Example",
@@ -70,7 +68,6 @@ export default {
     LPopup,
     TheForm,
     Moveable,
-    TheFooter
   },
   data() {
     return {

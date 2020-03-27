@@ -1,8 +1,19 @@
 <template>
   <div id="app">
     <router-view/>
+    <TheFooter/>
+
   </div>
 </template>
+<script>
+import TheFooter from "./components/TheFooter";
+
+export default {
+  components: {
+    TheFooter
+  },
+}
+</script>
 
 <style lang="scss">
 #app {
