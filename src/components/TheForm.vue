@@ -34,14 +34,14 @@
               >Timeline of confirmed and deaths cases in {{name}}</h2>
               <h5
                 class="mb-5"
-                style="color: white; z-index: 2; position: relative"
+                style="color: white; z-index: 2; position: relative; text-align: center"
               >To intercat with this chart hover on it</h5>
               <div class="legenda" style="z-index: 2; position: absolute; left: 20%;">
                 <h4>Legend:</h4>
                 <p style="color: blue; position: relative">Confirmed</p>
                 <p style="color: red; position: relative">Deaths</p>
               </div>
-              <chart :options="dateCollection"></chart>
+              <chart :options="dateCollection"></chart> 
             </b-card>
           </b-col>
         </b-row>
